@@ -15,8 +15,17 @@ const Statistic = ({text, value}) => {
 
 const Statistics = ({clicks}) => {
   const total = clicks[0] + clicks[1] + clicks[2]
-  const average = total / 3
+  const average = (clicks[0] - clicks[2]) / total
   const positive = (clicks[0] / total) * 100
+  
+  if (total === 0) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    )
+  }
+
   return (
     <div>
       <table>
