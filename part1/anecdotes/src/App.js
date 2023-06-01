@@ -1,6 +1,27 @@
 import { useState } from 'react'
 
 const App = () => {
+
+  const Header = ({text}) => <h2>{text}</h2>
+
+  const Best = ({anecdotes, allVotes}) => {
+    const highestVoteCount = Math.max(...allVotes)
+    const winnerIndex = allVotes.indexOf(highestVoteCount)
+    const best = anecdotes[winnerIndex]
+    if (highestVoteCount === 0) {
+      return (
+        <p>No votes yet</p>
+      )
+    }
+  
+    return (
+      <div>
+        <p>{best}</p>
+        <p>has {highestVoteCount} votes</p>
+      </div>
+    )
+  }
+
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -43,9 +64,12 @@ const App = () => {
 
   return (
     <div>
+      <Header text="Daily Anecdotes"/>
       <Anecdote text={anecdotes[selected]} votes={allVotes[selected]} />
       <Button text="next anecdote" onClick={handleNextAnecdote}/>
       <Button text="vote" onClick={handleVoting}/>
+      <Header text="Most popular"/>
+      <Best anecdotes={anecdotes} allVotes={allVotes}/>
     </div>
   )
 }
