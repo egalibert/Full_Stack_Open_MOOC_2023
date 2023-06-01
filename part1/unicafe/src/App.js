@@ -36,8 +36,6 @@ const Statistics = ({clicks}) => {
           <Statistic text="all" value={total} />
           <Statistic text="average" value={average} />
           <Statistic text="positive" value={positive} />
-          {/* /* <Statistic text="average" value={average} />
-          <Statistic text="positive" value={positive} />  */}
         </tbody>
       </table>
     </div>
